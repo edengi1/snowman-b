@@ -1,7 +1,6 @@
-#include<string>
-#include <iostream>
-using namespace std;
+#include <string>
 
-namespace ariel{
-    string snowman(long n);
+namespace ariel
+{
+    std::string snowman(int num);
 }

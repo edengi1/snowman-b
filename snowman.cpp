@@ -1,206 +1,183 @@
+#include <string>
 #include <iostream>
-#include <string.h>
-#include <stdio.h>
-#include "snowman.hpp"
-using namespace std;
-
-using namespace std;
-const int Tn = 10;
-const int H = 100;
-const int Th = 1000;
-const int Tt = 10000;
-const int Ht = 100000;
-const int M = 1000000;
-const int Tm = 10000000;
-
 namespace ariel
 {
-    int SumDigit(long x)
-    {
-        int sum = 0;
-        while (x != 0)
+    std::string snowman(int num){
+        const int Ten=10;
+        const int Hundred=100;
+        const int Thousand=1000;
+        const int TenThousand=10000;
+        const int HundredThousand=100000;
+        const int million=1000000;
+        const int TenMillion=10000000;
+        const int x=1;
+        const int y=4;
+        const int z=0;
+        const int j=8;
+        int a=num;
+        int b=0;
+        int count=z;
+        while(a>z)
         {
-            x = x / Tn;
-            ++sum;
-        }
-        return sum;
-    }
-
-    bool ContainsDigit(long n)
-    {
-        while (n != 0)
-        {
-            if (n % Tn > 4 || n % Tn < 1)
+            b=a%Ten;
+            if(b>y || b<x)
             {
-                return false;
+                throw("bigger then four or smaller then 1");
             }
-            n = n / Tn;
+            a=a/Ten;
+            count++;
         }
-        return true;
-    }
-
-    string snowman(long n)
-    {
-        const int d = 8;
-        
-        string left = " ";
-        string right = " ";
-
-        if (SumDigit(n) == d && ContainsDigit(n))
+        if(count!=j)
         {
-            string final_str;
-
-            while (n != 0)
-            {
-                switch (n / Tm % Tn) // לא לבדוק
-                {
-                case '1':
-                    final_str.append("\n _===_\n");
-                    break;
-                case '2':
-                    final_str.append("\n  ___\n");
-                    final_str.append(" .....\n");
-                    break;
-                case '3':
-                    final_str.append("  /_\\\n");
-                    final_str.append("\n   _\n");
-                    break;
-                case '4':
-                    final_str.append("\n  ___\n");
-                    final_str.append(" (_*_)\n");
-                    break;
-                }
-
-                switch (n / Th % Tn) //LO LIBDOK
-                {
-                case '1':
-                    final_str.append(" (");
-                    left = "<";
-                    break;
-                case '2':
-                    final_str.append("\\(");
-                    break;
-                case '3':
-                    final_str.append(" (");
-                    left = "/";
-                    break;
-                case '4':
-                    final_str.append(" (");
-                    break;
-                }
-
-                switch (n / Ht % Tn)
-                {
-                case '1':
-                    final_str.append("(.");
-                    break;
-                case '2':
-                    final_str.append("(o");
-                    break;
-                case '3':
-                    final_str.append("(O");
-                    break;
-                case '4':
-                    final_str.append("(-");
-                    break;
-                }
-                //n
-
-                switch (n / M % Tn) // לא לבדוק
-                {
-                case '1':
-                    final_str.append(",");
-                    break;
-                case '2':
-                    final_str.append(".");
-                    break;
-                case '3':
-                    final_str.append("_");
-                    break;
-                case '4':
-                    final_str.append(" ");
-                    break;
-                }
-
-                //r
-
-                switch (n / Tt % Tn) //LO LBDOK
-                {
-                case '1':
-                    final_str.append(".)");
-                    break;
-                case '2':
-                    final_str.append("o)");
-                    break;
-                case '3':
-                    final_str.append("O)");
-                    break;
-                case '4':
-                    final_str.append("-)");
-                    break;
-                }
-                //y
-
-                switch (n / H % Tn) // לא לבדוק
-                {
-                case '1':
-                    final_str.append("\n");
-                    right = ">";
-                    break;
-                case '2':
-                    final_str.append("/\n");
-                    break;
-                case '3':
-                    final_str.append("\n");
-                    right = "\\";
-                    break;
-                case '4':
-                    final_str.append("\n");
-                    break;
-                }
-                //t
-
-                final_str.append(left);
-                switch (n / Tn % Tn) // לא לבדוק
-                {
-                case '1':
-                    final_str.append("( : )");
-                    break;
-                case '2':
-                    final_str.append("(] [)");
-                    break;
-                case '3':
-                    final_str.append("(> <)");
-                    break;
-                case '4':
-                    final_str.append("(   )");
-                    break;
-                }
-
-                final_str.append(right);
-                final_str.append("\n");
-                //b
-
-                switch (n % Tn) // לא לבדוק
-                {
-                case '1':
-                    final_str.append(" ( : )");
-                    break;
-                case '2':
-                    final_str.append(" (\" \")");
-                    break;
-                case '3':
-                    final_str.append(" (___)");
-                    break;
-                case '4':
-                    final_str.append(" (   )");
-                    break;
-                }
-
-                return final_str;
-            }
-        
+            throw("more or less then 8 digits");
         }
-    throw std::out_of_range("bad input!"); 
+        std::string n;
+        b=num/TenMillion;
+        int k=b%Ten;
+        switch (k)
+        {
+        case 1:
+            n=n+" \n_===_\n";
+            break;
+        case 2:
+            n=n+"  ___\n .....\n";
+            break;
+        case 3:
+            n="   _ \n  /_\\\n"+n;
+            break;
+        case 4:
+            n="  ___\n (_*_)\n"+n;
+            break;
+    
+        }
+        b=num/Thousand;
+        k=b%Ten;
+        if(k==2){
+            n=n+"\\";
+        }
+        b=num/HundredThousand;
+        k=b%Ten;
+        switch (k)
+        {
+        case 1:
+            n=n+"(.";
+            break;
+        case 2:
+            n=n+"(o";
+            break;
+        case 3:
+            n=n+"(O";
+            break;
+        case 4:
+            n=n+"(-";
+            break;
+        }
+        b=num/million;
+        k=b%Ten;
+        switch (k)
+        {
+        case 1:
+            n=n+",";
+            break;
+        case 2:
+            n=n+".";
+            break;
+        case 3:
+            n=n+"_";
+            break;
+        case 4:
+            n=n+" ";
+            break;
+        }
+        b=num/TenThousand;
+        k=b%Ten;
+        switch (k)
+        {
+        case 1:
+            n=n+".)";
+            break;
+        case 2:
+            n=n+"o)";
+            break;
+        case 3:
+            n=n+"O)";
+            break;
+        case 4:
+            n=n+"-)";
+            break;
+        }
+        b=num/Hundred;
+        k=b%Ten;
+        if(k==2){
+            n=n+"/";
+        }
+        b=num/Thousand;
+        k=b%Ten;
+        switch (k)
+        {
+        case 1:
+            n=n+("\n<");
+            break;
+        case 2:
+            n=n+"\n ";
+            break;
+        case 3:
+            n=n+"\n/";
+            break;
+        case 4:
+            n=n+"\n ";
+            break;
+        }
+        b=num/Ten;
+        k=b%Ten;
+        switch (k)
+        {
+        case 1:
+            n=n+"( : )";
+            break;
+        case 2:
+            n=n+"(] [)";
+            break;
+        case 3:
+            n=n+"(> <)";
+            break;
+        case 4:
+            n=n+"(   )";
+            break;       
+        }
+        b=num/Hundred;
+        k=b%Ten;
+        switch (k)
+        {
+        case 1:
+            n=n+(">\n");
+            break;
+        case 2:
+            n=n+" \n";
+            break;
+        case 3:
+            n=n+"\\\n";
+            break;
+        case 4:
+            n=n+" \n";
+            break;
+        }
+        k = num%Ten;
+        switch (k)
+        {
+        case 1:
+            n=n+" ( : )";
+            break;
+        case 2:
+            n=n+" (\" \")";
+            break;
+        case 3:
+            n=n+" (___)";
+            break;
+        case 4:
+            n=n+" (   )";
+            break;
+        }
+        return n;
     }
 }
